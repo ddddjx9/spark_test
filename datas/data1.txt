@@ -1,0 +1,6 @@
+hello world linux
+hello spark linux
+hello scala java
+scala difficult
+spark hadoop hive sql
+mysql hive hbase flink

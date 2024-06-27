@@ -1,0 +1,9 @@
+hello world linux
+hello spark linux
+hello scala java
+scala difficult
+spark hadoop hive sql
+mysql hive hbase flink
+spark java python dataframe
+pandas numpy matplotlib
+hadoop yarn mapreduce hdfs common core
