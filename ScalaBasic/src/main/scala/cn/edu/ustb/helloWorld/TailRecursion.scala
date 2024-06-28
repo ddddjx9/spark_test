@@ -1,3 +1,5 @@
+package cn.edu.ustb.helloWorld
+
 import scala.annotation.tailrec
 
 object TailRecursion {
@@ -11,7 +13,8 @@ object TailRecursion {
     if (n == 1) {
       return 1 + accumulator
     }
-    return sum(n - 1, n + accumulator)
+    //不用写return
+    sum(n - 1, n + accumulator)
   }
 }
 
