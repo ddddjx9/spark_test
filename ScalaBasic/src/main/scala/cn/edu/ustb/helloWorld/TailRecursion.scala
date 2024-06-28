@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 
 object TailRecursion {
   def main(args: Array[String]): Unit = {
-    val result: Long = sum(500, 0)
+    val result: Long = sum(5050, 0)
     println(result)
   }
 
