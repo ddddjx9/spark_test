@@ -12,11 +12,27 @@ object Operator {
     var num = 2
     num >>= 1
     println(num) //0
+
     var num1 = 2
     num1 <<= 1
     println(num1) //8
+
     val `if` = 10
     println(`if`)
+
+    val a = 2.3
+    val b = 1.5
+    val result: Double = a / b
+    println(result.formatted("%2.2f"))
+
+    val str1: String = "hello"
+    val str2: String = new String("hello")
+    println(str1 == str2) //true
+
+    //运算符的本质
+    val n1: Int = 19
+    val n2: Int = 37
+    println(n1.+(n2))
   }
 }
 
