@@ -12,7 +12,7 @@ object Spark02_WordCount {
 
     //在JDBC中创建连接对象
     //建立和Spark框架的连接
-    val sparkConf = new SparkConf().setMaster("local").setAppName("WordCount")
+    val sparkConf: SparkConf = new SparkConf().setMaster("local").setAppName("WordCount")
 
     //这里的sc是spark的环境对象
     val sc = new SparkContext(sparkConf)
