@@ -6,27 +6,32 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 import java.util.Arrays;
 
-public class Spark02_Transform_Map {
+public class Spark02_Transform_Map_1 {
     public static void main(String[] args) {
         final SparkConf conf = new SparkConf();
-        conf.setMaster("local[*]");
+        conf.setMaster("local[2]");
         conf.setAppName("spark");
 
         final JavaSparkContext jsc = new JavaSparkContext(conf);
 
         final JavaRDD<Integer> rdd = jsc.parallelize(Arrays.asList(1, 2, 3, 4), 2);
 
-        final JavaRDD<Integer> newRDD = rdd.map(NumberTest::multiple2);
+        final JavaRDD<Integer> newRDD1 = rdd.map(
+                num -> {
+                    System.out.println("@" + num);
+                    return num;
+                }
+        );
 
-        rdd.saveAsTextFile("output1");
-        newRDD.saveAsTextFile("output2");
+        final JavaRDD<Integer> newRDD2 = newRDD1.map(
+                num -> {
+                    System.out.println("###" + num);
+                    return num;
+                }
+        );
+
+        newRDD2.collect();
 
         jsc.close();
-    }
-}
-
-class NumberTest {
-    public static int multiple2(Integer num) {
-        return num * 2;
     }
 }
