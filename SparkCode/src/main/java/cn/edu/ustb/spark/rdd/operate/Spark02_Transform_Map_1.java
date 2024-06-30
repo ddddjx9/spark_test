@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Spark02_Transform_Map_1 {
     public static void main(String[] args) {
         final SparkConf conf = new SparkConf();
-        conf.setMaster("local[2]");
+        conf.setMaster("local[*]");
         conf.setAppName("spark");
 
         final JavaSparkContext jsc = new JavaSparkContext(conf);
