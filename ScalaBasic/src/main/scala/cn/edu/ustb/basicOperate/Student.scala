@@ -1,4 +1,4 @@
-package cn.edu.ustb.helloWorld
+package cn.edu.ustb.basicOperate
 
 /**
  * 之前的时候，是将school作为静态变量，利用类名进行调用，不够面向对象

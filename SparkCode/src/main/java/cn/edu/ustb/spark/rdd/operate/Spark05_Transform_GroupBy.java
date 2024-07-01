@@ -14,7 +14,7 @@ public class Spark05_Transform_GroupBy {
         conf.setAppName("spark");
 
         final JavaSparkContext jsc = new JavaSparkContext(conf);
-        final List<Integer> nums = Arrays.asList(1, 2, 3, 4);
+        final List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6);
         final JavaRDD<Integer> rdd = jsc.parallelize(nums);
 
         //RDD的方法 - groupBy（按照指定的规则对数据进行分组）

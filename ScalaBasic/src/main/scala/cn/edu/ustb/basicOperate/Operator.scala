@@ -1,4 +1,4 @@
-package cn.edu.ustb.helloWorld
+package cn.edu.ustb.basicOperate
 
 /**
  * Object：声明一个单例对象，全局仅有一个的对象（伴生对象）

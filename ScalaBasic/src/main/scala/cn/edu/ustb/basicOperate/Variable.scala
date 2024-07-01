@@ -1,4 +1,4 @@
-package cn.edu.ustb.helloWorld
+package cn.edu.ustb.basicOperate
 
 object Variable {
   def main(args: Array[String]): Unit = {

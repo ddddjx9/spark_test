@@ -1,4 +1,4 @@
-package cn.edu.ustb.helloWorld
+package cn.edu.ustb.basicOperate
 
 import java.io.{File, PrintWriter}
 import scala.io.{BufferedSource, Source}
