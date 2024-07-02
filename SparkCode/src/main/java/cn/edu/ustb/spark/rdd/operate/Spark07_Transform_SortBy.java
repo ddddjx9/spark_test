@@ -3,7 +3,6 @@ package cn.edu.ustb.spark.rdd.operate;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,12 +20,7 @@ public class Spark07_Transform_SortBy {
         //sortBy方法：按照指定的排序规则对数据进行排序
         //  排序后原有的顺序被打乱，说明有Shuffle操作
         //      Spark会为每一个数据增加一个标记，然后按照标记对数据进行排序
-        rdd.sortBy(new Function<Integer, Object>() {
-                    @Override
-                    public Object call(Integer v1) throws Exception {
-                        return v1;
-                    }
-                }, true, 2)
+        rdd.sortBy(v1 -> v1, true, 2)
                 //.collect().forEach(System.out::println);
                 .saveAsTextFile("output");
 
