@@ -18,7 +18,7 @@ object Spark01_WordCount {
     //执行业务操作
     //1. 读取文件，获取一行一行的数据
     //hello world
-    val lines: RDD[String] = sc.textFile("datas")
+    val lines: RDD[String] = sc.textFile("datas\\data1.txt")
 
     //2. 将行数据按空格或者\t进行拆分
     //扁平化操作

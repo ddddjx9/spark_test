@@ -1,7 +1,7 @@
 package cn.edu.ustb.spark.rdd.operate;
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
@@ -16,25 +16,33 @@ public class Spark08_Transform_KV {
 
         final JavaSparkContext jsc = new JavaSparkContext(conf);
 
-        final Tuple2<String, Integer> a1 = new Tuple2<>("a", 1);
-        final Tuple2<String, Integer> a2 = new Tuple2<>("b", 2);
-        final Tuple2<String, Integer> a3 = new Tuple2<>("c", 3);
+        final List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-        final List<Tuple2<String, Integer>> tuple2 = Arrays.asList(a1, a2, a3);
+        //目前是单值类型，想要让其变成KV类型进行处理
+        //单值类型能够和KV类型进行转换 - mapToPair
+        final JavaRDD<Integer> rdd = jsc.parallelize(list);
 
-        /*final JavaRDD<Tuple2<String, Integer>> rdd = jsc.parallelize(tuple2);
+        //mapToPair方法：
+        /*rdd.mapToPair(new PairFunction<Integer, Integer, Integer>() {
+                    @Override
+                    public Tuple2<Integer, Integer> call(Integer integer) throws Exception {
+                        return new Tuple2<Integer, Integer>(integer, integer * 2);
+                    }
+                }).mapValues(num -> num * 2)
+                .collect().forEach(System.out::println);*/
 
-        rdd.map(new Function<Tuple2<String, Integer>, Object>() {
-            @Override
-            public Object call(Tuple2<String, Integer> v1) throws Exception {
-                return new Tuple2<>(v1._1, v1._2 * 2);
-            }
-        }).collect().forEach(System.out::println);*/
+        rdd.mapToPair(num -> new Tuple2<>(num, num * 2))
+                .mapValues(num -> num * 2)
+                .collect()
+                .forEach(System.out::println);
 
-        //parallelizePairs：对一对数据做处理
-        final JavaPairRDD<String, Integer> pairRDD = (JavaPairRDD<String, Integer>) jsc.parallelizePairs(tuple2);
-
-        pairRDD.mapValues(v1 -> v1 * 2).collect().forEach(System.out::println);
+        //输出结果：
+        //(1,4)
+        //(2,8)
+        //(3,12)
+        //(4,16)
+        //(5,20)
+        //(6,24)
 
         jsc.close();
     }
