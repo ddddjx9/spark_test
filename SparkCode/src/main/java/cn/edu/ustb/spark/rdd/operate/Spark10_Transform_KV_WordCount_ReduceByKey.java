@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Spark10_Transform_KV_WordCount_ReduceByKey {
     public static void main(String[] args) {
         final SparkConf conf = new SparkConf();
-        conf.setMaster("local[*]");
+        //conf.setMaster("local[*]");
         conf.setAppName("spark");
 
         final JavaSparkContext jsc = new JavaSparkContext(conf);
