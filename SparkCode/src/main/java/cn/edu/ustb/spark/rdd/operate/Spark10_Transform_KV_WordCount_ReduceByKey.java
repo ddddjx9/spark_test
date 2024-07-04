@@ -38,6 +38,7 @@ public class Spark10_Transform_KV_WordCount_ReduceByKey {
         //(a,4)
         //(b,6)
         //reduceByKey的作用：按照相同的Key来做reduce
+        //      和groupByKey不同的是，拥有在Shuffle之前，分区内部进行Combiner的功能，减少落盘数据量
         //将KV类型的数据按照key对value进行reduce操作，将多个值聚合成一个值
         mapRDD.reduceByKey(Integer::sum).collect().forEach(System.out::println);
 
