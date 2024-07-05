@@ -26,7 +26,11 @@ public class Spark03_Transform_Filter_1 {
 
         //减轻数据倾斜的情况
         //coalesce - 合并分区
-        filterRDD.coalesce(3, true).saveAsTextFile("output");
+        //filterRDD.coalesce(3, true).saveAsTextFile("output");
+
+        //重分区方法 - repartition，重新设定分区数量
+        //repartition方法就是shuffle指定为true的coalesce方法
+        filterRDD.repartition(3).saveAsTextFile("output");
 
         jsc.close();
     }
