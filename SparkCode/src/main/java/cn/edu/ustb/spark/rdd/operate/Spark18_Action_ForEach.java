@@ -15,8 +15,8 @@ public class Spark18_Action_ForEach {
 
         final JavaSparkContext jsc = new JavaSparkContext(conf);
 
-        final List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
-        final JavaRDD<Integer> rdd = jsc.parallelize(list, 2);
+        final List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5, 6);
+        final JavaRDD<Integer> rdd = jsc.parallelize(nums, 2);
 
         //def foreach(f: VoidFunction[T]): Unit = {
         //    rdd.foreach(x => f.call(x))
@@ -26,9 +26,16 @@ public class Spark18_Action_ForEach {
         //public interface VoidFunction<T> extends Serializable {
         //  void call(T t) throws Exception;
         //}
+
+        //因为collect方法是将执行结果按照分区数据拉取回到Driver形成的数据集合，有序
         rdd.collect().forEach(System.out::println);
         System.out.println("***********************");
-        rdd.foreach(num -> System.out.println(num));
+        //forEach：分布式循环
+        //这里的两个方法都不可以书写lambda表达式，否则会报错：
+        //Task not serializable
+        //Caused by: java.io.NotSerializableException: java.io.PrintStream
+        //Serialization stack:
+        rdd.foreach(element -> System.out.println(element));
         //执行结果：
         //1
         //2
@@ -43,7 +50,10 @@ public class Spark18_Action_ForEach {
         //1
         //2
         //3
-        //因为collect方法是将执行结果按照分区数据拉取回到Driver形成的数据集合，有序
+
+        rdd.foreachPartition(list -> System.out.println(list));
+        //IteratorWrapper(<iterator>)  两个分区的整体数据传过来处理
+        //IteratorWrapper(<iterator>)
 
         jsc.close();
     }
