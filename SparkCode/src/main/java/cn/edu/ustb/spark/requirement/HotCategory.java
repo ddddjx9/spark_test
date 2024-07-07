@@ -17,7 +17,7 @@ import java.io.Serializable;
  * &nbsp&nbsp 重写toString方法
  * </p>
  */
-public class HotCategory implements Serializable {
+public class HotCategory implements Serializable, Comparable<HotCategory> {
     private String id;
     private Long clickCount;
     private Long orderCount;
@@ -107,5 +107,13 @@ public class HotCategory implements Serializable {
 
     public String toString() {
         return "HotCategory{id = " + id + ", clickCount = " + clickCount + ", orderCount = " + orderCount + ", payCount = " + payCount + "}";
+    }
+
+    @Override
+    public int compareTo(HotCategory other) {
+        final long clickCountCompare = this.clickCount - other.clickCount;
+        final long orderCountCompare = this.orderCount - other.orderCount;
+        final long payCountCompare = this.payCount - other.payCount;
+        return (int) (clickCountCompare != 0 ? clickCountCompare : orderCountCompare != 0 ? orderCountCompare : payCountCompare);
     }
 }
