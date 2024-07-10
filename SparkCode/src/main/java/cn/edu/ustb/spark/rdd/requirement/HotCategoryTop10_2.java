@@ -1,4 +1,4 @@
-package cn.edu.ustb.spark.requirement;
+package cn.edu.ustb.spark.rdd.requirement;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
