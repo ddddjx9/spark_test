@@ -34,7 +34,3 @@ public class Spark19_Action {
         jsc.close();
     }
 }
-
-class Student implements Serializable {
-    public int age = 30;
-}

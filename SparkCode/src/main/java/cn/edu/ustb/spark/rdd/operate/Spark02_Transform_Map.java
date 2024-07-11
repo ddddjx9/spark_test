@@ -16,17 +16,11 @@ public class Spark02_Transform_Map {
 
         final JavaRDD<Integer> rdd = jsc.parallelize(Arrays.asList(1, 2, 3, 4), 2);
 
-        final JavaRDD<Integer> newRDD = rdd.map(NumberTest::multiple2);
+        final JavaRDD<Integer> newRDD = rdd.map(NumberOperate::multiple2);
 
         rdd.saveAsTextFile("output1");
         newRDD.saveAsTextFile("output2");
 
         jsc.close();
-    }
-}
-
-class NumberTest {
-    public static int multiple2(Integer num) {
-        return num * 2;
     }
 }

@@ -19,7 +19,7 @@ public class Spark01_Dependency {
         final ArrayList<Tuple2<String, Integer>> datas = new ArrayList<>();
 
         datas.add(new Tuple2<>("a", 1));
-        datas.add(new Tuple2<>("a", 2));
+        datas.add(new Tuple2<>("b", 2));
         datas.add(new Tuple2<>("a", 3));
         datas.add(new Tuple2<>("b", 4));
 

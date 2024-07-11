@@ -34,72 +34,72 @@ public class HotCategory implements Serializable, Comparable<HotCategory> {
     }
 
     /**
-     * 获取
+     * 获取id
      *
-     * @return id
+     * @return id 返回id
      */
     public String getId() {
         return id;
     }
 
     /**
-     * 设置
+     * 设置id
      *
-     * @param id
+     * @param id 传入具体id
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * 获取
+     * 获取点击数
      *
-     * @return clickCount
+     * @return clickCount 返回点击数
      */
     public Long getClickCount() {
         return clickCount;
     }
 
     /**
-     * 设置
+     * 设置点击数
      *
-     * @param clickCount
+     * @param clickCount 传入点击数
      */
     public void setClickCount(Long clickCount) {
         this.clickCount = clickCount;
     }
 
     /**
-     * 获取
+     * 获取下单数
      *
-     * @return orderCount
+     * @return orderCount 返回下单数
      */
     public Long getOrderCount() {
         return orderCount;
     }
 
     /**
-     * 设置
+     * 设置下单数
      *
-     * @param orderCount
+     * @param orderCount 返回下单数
      */
     public void setOrderCount(Long orderCount) {
         this.orderCount = orderCount;
     }
 
     /**
-     * 获取
+     * 获取支付数
      *
-     * @return payCount
+     * @return payCount 返回支付数
      */
     public Long getPayCount() {
         return payCount;
     }
 
     /**
-     * 设置
+     * 设置支付数
      *
-     * @param payCount
+     * @param payCount 传入支付数
      */
     public void setPayCount(Long payCount) {
         this.payCount = payCount;

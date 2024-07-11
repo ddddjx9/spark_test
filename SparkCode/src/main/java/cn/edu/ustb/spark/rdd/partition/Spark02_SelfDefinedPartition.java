@@ -1,7 +1,6 @@
 package cn.edu.ustb.spark.rdd.partition;
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 

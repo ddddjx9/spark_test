@@ -4,7 +4,6 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,16 +25,14 @@ public class Spark09_Transform_KV_GroupBy {
         final JavaPairRDD<Integer, Iterable<Integer>> groupRDD = rdd.groupBy(num -> num % 2);
         //groupRDD.collect().forEach(System.out::println);
 
-        groupRDD.mapValues(new Function<Iterable<Integer>, Integer>() {
-            @Override
-            public Integer call(Iterable<Integer> v1) throws Exception {
-                int sum = 0;
-                for (Integer i : v1) {
-                    sum += i;
+        groupRDD.mapValues(v1 -> {
+                    int sum = 0;
+                    for (Integer i : v1) {
+                        sum += i;
+                    }
+                    return sum;
                 }
-                return sum;
-            }
-        }).collect().forEach(System.out::println);
+        ).collect().forEach(System.out::println);
 
         jsc.close();
     }

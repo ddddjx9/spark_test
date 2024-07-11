@@ -19,7 +19,7 @@ public class HotCategoryTop10 {
         final JavaSparkContext jsc = new JavaSparkContext(conf);
 
         //将文件作为数据源，对接RDD
-        final JavaRDD<String> dataRDD = jsc.textFile("D:\\code\\ScalaTest\\datas\\user_visit_action.txt");
+        final JavaRDD<String> dataRDD = jsc.textFile("datas\\user_visit_action.txt");
 
         //TODO 需求分析
         //      热门（点击，下单，支付）品类Top10

@@ -37,6 +37,8 @@ public class Spark13_Action {
         //对执行结果生成相应变量后，发现生成的不是新的RDD，而是具体的执行结果
         final List<Integer> collect = rdd.collect();
 
+        sortRDD.collect().forEach(System.out::println);
+        System.out.println(collect);
         //http://localhost:4040
         Thread.sleep(1000000L);
 

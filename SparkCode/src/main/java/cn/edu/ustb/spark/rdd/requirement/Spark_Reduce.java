@@ -3,7 +3,6 @@ package cn.edu.ustb.spark.rdd.requirement;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +34,4 @@ public class Spark_Reduce {
     }
 }
 
-class MyValue implements Serializable {
-    public int sum = 0;
-}
+

@@ -7,6 +7,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class Spark18_Action_ForEach {
     public static void main(String[] args) {
         final SparkConf conf = new SparkConf();
