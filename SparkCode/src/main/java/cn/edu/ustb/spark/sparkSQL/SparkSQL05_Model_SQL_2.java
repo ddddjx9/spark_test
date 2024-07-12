@@ -23,5 +23,7 @@ public class SparkSQL05_Model_SQL_2 {
         final Dataset<Row> sqlDS = sparkSession.sql(sql);
 
         sqlDS.show();
+
+        sparkSession.close();
     }
 }

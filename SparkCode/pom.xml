@@ -44,5 +44,17 @@
             <artifactId>kryo</artifactId>
             <version>5.0.3</version>
         </dependency>
+        <!-- 添加MYSQL数据库驱动支持 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.27</version>
+        </dependency>
+        <!-- 添加spark中与hive有关的依赖 -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_2.12</artifactId>
+            <version>3.3.1</version>
+        </dependency>
     </dependencies>
 </project>

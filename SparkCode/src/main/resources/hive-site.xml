@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<?xml-stulesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+	<!-- jdbc连接的URL -->
+	<property>
+		<name>javax.jdo.option.ConnectionURL</name>
+		<value>jdbc:mysql://Hadoop130:3306/metastore?useSSL=false</value>
+	</property>
+
+	<!-- jdbc连接的Driver -->
+	<property>
+   		<name>javax.jdo.option.ConnectionDriverName</name>
+   		<value>com.mysql.jdbc.Driver</value>
+	</property>
+
+	<!-- jdbc连接的username -->
+	<property>
+		<name>javax.jdo.option.ConnectionUserName</name>
+   		<value>root</value>
+	</property>
+	
+	<!-- jdbc连接的password-->
+	<property>
+    		<name>javax.jdo.option.ConnectionPassword</name>
+    		<value>Djx_20040925mysqld</value>
+	</property>
+
+	<!-- Hive默认在HDFS的工作目录 -->
+	<property>
+   		<name>hive.metastore.warehouse.dir</name>
+   		<value>/user/hive/warehouse</value>
+	</property>
+
+	<!-- 指定hiveserver2连接的host -->
+	<property>
+		<name>hive.server2.thrift.bind.host</name>
+		<value>Hadoop130</value>
+	</property>
+
+	<!--指定hiverserver2连接的端口号 -->
+	<property>
+		<name>hive.server2.thrift.port</name>
+		<value>10000</value>
+	</property>
+
+</configuration>
