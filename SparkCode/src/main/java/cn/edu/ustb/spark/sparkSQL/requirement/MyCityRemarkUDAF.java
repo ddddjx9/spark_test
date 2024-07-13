@@ -4,9 +4,7 @@ import org.apache.spark.sql.Encoder;
 import org.apache.spark.sql.Encoders;
 import org.apache.spark.sql.expressions.Aggregator;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 自定义UDAF类，输入城市名，输出拼接好的字符串
@@ -23,27 +21,27 @@ public class MyCityRemarkUDAF extends Aggregator<String, MyCityRemarkBuffer, Str
     }
 
     /**
-     * 根据传递进来的城市名，对缓冲区中的数据进行操作
+     * 根据传递进来的城市名，对缓冲区中的数据进行聚合处理
      *
-     * @param b 要进行操作的缓冲区
-     * @param a 传递进来的城市名
+     * @param b        要进行操作的缓冲区
+     * @param cityName 传递进来的城市名
      * @return 返回计算完毕后的缓冲区
      */
     @Override
-    public MyCityRemarkBuffer reduce(MyCityRemarkBuffer b, String a) {
+    public MyCityRemarkBuffer reduce(MyCityRemarkBuffer b, String cityName) {
         b.setCount(b.getCount() + 1);
         final Map<String, Long> cityMap = b.getCityMap();
-        if (cityMap.containsKey(a)) {
-            cityMap.put(a, cityMap.get(a) + 1);
+        if (cityMap.containsKey(cityName)) {
+            cityMap.put(cityName, cityMap.get(cityName) + 1);
         } else {
-            cityMap.put(a, 1L);
+            cityMap.put(cityName, 1L);
         }
         b.setCityMap(cityMap);
         return b;
     }
 
     /**
-     * 将多个节点缓冲区中的数据进行聚合
+     * 合并缓冲区：将多个节点缓冲区中的数据进行聚合
      *
      * @param b1 节点1的缓冲区
      * @param b2 节点2的缓冲区
@@ -56,11 +54,14 @@ public class MyCityRemarkUDAF extends Aggregator<String, MyCityRemarkBuffer, Str
         final Map<String, Long> map2 = b2.getCityMap();
         final Set<String> set1 = map1.keySet();
         final Set<String> set2 = map2.keySet();
-        for (String s1 : set1) {
-            for (String s2 : set2) {
-                if (s1.equals(s2)) {
-                    map1.put(s1, map1.get(s1) + map2.get(s1));
-                }
+        for (String s : set2) {
+            //判断两个map中的键 - 城市名有没有重复的
+            //  如果有重复的，那么就将两个城市中的count聚合
+            //  如果没有重复的，直接将没有重复的那个放在原有的集合里面
+            if (set1.contains(s)) {
+                map1.put(s, map1.get(s) + map2.get(s));
+            } else {
+                map1.put(s, map2.get(s));
             }
         }
         b1.setCityMap(map1);
@@ -75,7 +76,28 @@ public class MyCityRemarkUDAF extends Aggregator<String, MyCityRemarkBuffer, Str
      */
     @Override
     public String finish(MyCityRemarkBuffer reduction) {
-        return "";
+        //尝试将map转换为list进行排序，排序后截取集合的前两个元素
+        final Map<String, Long> cityMap = reduction.getCityMap();
+        List<Map.Entry<String, Long>> list = new ArrayList<>(cityMap.entrySet());
+        list.sort((o1, o2) -> Integer.parseInt(String.valueOf(o2.getValue() - o1.getValue())));
+        //截取集合，左包右不包 - subList
+        //拼接字符串
+        StringBuilder sb = new StringBuilder();
+        Long topTwo = list.get(0).getValue() + list.get(1).getValue();
+
+        for (int i = 0; i < 2; i++) {
+            sb.append(list.get(i).getKey())
+                    .append(String.format("%.1f", (list.get(i).getValue() * 1.0 / reduction.getCount()) * 100))
+                    .append("%，");
+        }
+
+        if (list.size() > 2) {
+            sb.append("其他")
+                    .append(String.format("%.1f", ((reduction.getCount() - topTwo) * 1.0 / reduction.getCount()) * 100))
+                    .append("%");
+        }
+
+        return sb.toString();
     }
 
     /**

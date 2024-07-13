@@ -35,14 +35,18 @@ public class SparkSQL02_Requirement {
         //  查询字段必须参与分组
         //group by分组字段关系
         //  如果分组字段存在上下级，或者从属关系，那么统计结果和下级字段有关，与上级字段无关
+        //  组内排序 - 开窗函数
         sparkSession.udf().register("cityRemark", functions.udaf(new MyCityRemarkUDAF(), Encoders.STRING()));
-        sparkSession.sql("SELECT ci.area, pi.product_name, COUNT(*) AS click_count, cityRemark(city_name)\n" +
-                        "FROM user_visit_action AS user\n" +
-                        "JOIN product_info AS pi ON user.click_product_id = pi.product_id\n" +
-                        "JOIN city_info AS ci ON user.city_id = ci.city_id\n" +
-                        "WHERE user.click_product_id != '-1'\n" +
-                        "GROUP BY ci.area, pi.product_id, pi.product_name\n" +
-                        "LIMIT 10;")
+        sparkSession.sql("SELECT * FROM (\n" +
+                        "    SELECT *,rank() over(partition by area order by click_count desc) rk FROM (\n" +
+                        "    SELECT ci.area, pi.product_name, COUNT(*) AS click_count, cityRemark(city_name) AS city_remark\n" +
+                        "    FROM user_visit_action AS user\n" +
+                        "    JOIN product_info AS pi ON user.click_product_id = pi.product_id\n" +
+                        "    JOIN city_info AS ci ON user.city_id = ci.city_id\n" +
+                        "    WHERE user.click_product_id != '-1'\n" +
+                        "    GROUP BY ci.area, pi.product_id, pi.product_name\n" +
+                        "    ) AS t1\n" +
+                        ") AS t2 WHERE rk <= 3;")
                 .show();
 
         sparkSession.close();

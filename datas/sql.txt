@@ -1,13 +1,17 @@
 select * from user_visit_action where click_product_id !='-1';
 
 //仅仅聚合总点击次数
-SELECT ci.area, pi.product_name, COUNT(*) AS click_count
-FROM user_visit_action AS user
-JOIN product_info AS pi ON user.click_product_id = pi.product_id
-JOIN city_info AS ci ON user.city_id = ci.city_id
-WHERE user.click_product_id != '-1'
-GROUP BY ci.area, pi.product_id, pi.product_name
-LIMIT 10;
+SELECT * FROM (
+    SELECT *,rank() over(partition by area order by click_count desc) rk FROM (
+    SELECT ci.area, pi.product_name, COUNT(*) AS click_count, cityRemark(city_name) AS city_remark
+    FROM user_visit_action AS user
+    JOIN product_info AS pi ON user.click_product_id = pi.product_id
+    JOIN city_info AS ci ON user.city_id = ci.city_id
+    WHERE user.click_product_id != '-1'
+    GROUP BY ci.area, pi.product_id, pi.product_name
+    LIMIT 10
+    ) AS t1
+) AS t2 WHERE rk <= 3;
 
 SELECT ci.area, ci.city_name, pi.product_id, pi.product_name, COUNT(*) AS click_count, temp.total_count
 FROM user_visit_action AS user, product_info AS pi, city_info AS ci,
