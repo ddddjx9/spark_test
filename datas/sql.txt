@@ -1,0 +1,74 @@
+select * from user_visit_action where click_product_id !='-1';
+
+//仅仅聚合总点击次数
+SELECT ci.area, pi.product_name, COUNT(*) AS click_count
+FROM user_visit_action AS user
+JOIN product_info AS pi ON user.click_product_id = pi.product_id
+JOIN city_info AS ci ON user.city_id = ci.city_id
+WHERE user.click_product_id != '-1'
+GROUP BY ci.area, pi.product_id, pi.product_name
+LIMIT 10;
+
+SELECT ci.area, ci.city_name, pi.product_id, pi.product_name, COUNT(*) AS click_count, temp.total_count
+FROM user_visit_action AS user, product_info AS pi, city_info AS ci,
+(SELECT c.area, count(*) AS total_count FROM user_visit_action AS u, city_info AS c, product_info AS p
+WHERE u.city_id=c.city_id AND u.click_product_id=p.product_id
+GROUP BY c.area) AS temp
+WHERE user.click_product_id = pi.product_id
+AND user.city_id = ci.city_id
+AND user.click_product_id != '-1'
+AND ci.area=temp.area
+GROUP BY ci.area, ci.city_name, pi.product_id, pi.product_name, temp.total_count
+LIMIT 10;
+
++----+---------+----------+------------+-----------+-----------+
+|area|city_name|product_id|product_name|click_count|total_count|
++----+---------+----------+------------+-----------+-----------+
+|华东|     上海|        79|     商品_79|         56|      32541|
+|华东|     无锡|        68|     商品_68|         53|      32541|
+|华东|     济南|        92|     商品_92|         61|      32541|
+|华东|     南京|        11|     商品_11|         46|      32541|
+|华东|     苏州|        50|     商品_50|         44|      32541|
+|华东|     无锡|        56|     商品_56|         49|      32541|
+|华东|     苏州|        94|     商品_94|         51|      32541|
+|华东|     杭州|        46|     商品_46|         56|      32541|
+|华东|     南京|        23|     商品_23|         47|      32541|
+|华东|     上海|        93|     商品_93|         37|      32541|
++----+---------+----------+------------+-----------+-----------+
+该条sql的执行结果
+其实全靠sql应该也行，但是还需要套一个表，算比率，比较麻烦
+
+继续修正：
+SELECT
+  ci.area,
+  ci.city_name,
+  pi.product_id,
+  pi.product_name,
+  COUNT(*) AS click_count,
+  temp.total_count,
+  ROUND(COUNT(*) * 1.0 / temp.total_count, 2) AS click_percentage
+FROM
+  user_visit_action AS user
+  JOIN product_info AS pi ON user.click_product_id = pi.product_id
+  JOIN city_info AS ci ON user.city_id = ci.city_id
+  CROSS JOIN (
+    SELECT
+      c.area,
+      COUNT(*) AS total_count
+    FROM
+      user_visit_action AS u
+      JOIN product_info AS p ON u.click_product_id = p.product_id
+      JOIN city_info AS c ON u.city_id = c.city_id
+    WHERE
+      u.click_product_id != '-1'
+    GROUP BY
+      c.area
+  ) AS temp
+WHERE
+  user.click_product_id != '-1'
+  AND ci.area = temp.area
+GROUP BY
+  ci.area, ci.city_name, pi.product_id, pi.product_name, temp.total_count
+ORDER BY
+  click_count DESC
+LIMIT 10;
