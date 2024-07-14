@@ -15,6 +15,9 @@ public class SparkSQL02_Requirement {
                 .enableHiveSupport()
                 .getOrCreate();
 
+        // 设置显示的列宽
+        sparkSession.conf().set("spark.sql.debug.maxToStringFields", 100);
+
         //需求分析：
         //  如果需求中有【各个xxx】的描述。表述的基本含义是将相同的数据分到一个组中。
         //  热门：从点击量统计 => （商品id，点击数量）

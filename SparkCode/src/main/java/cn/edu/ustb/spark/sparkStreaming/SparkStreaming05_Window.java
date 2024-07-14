@@ -29,7 +29,7 @@ public class SparkStreaming05_Window {
         //      第一个参数表示窗口的数据范围（时间）
         //      第二个参数表示窗口的移动幅度
         //      spark streaming是在窗口移动的时候计算的，以窗口移动幅度作为计算标准
-        final JavaPairDStream<String, Integer> windowDS = wordDS.window(new Duration(6000));
+        final JavaPairDStream<String, Integer> windowDS = wordDS.window(new Duration(3000), new Duration(6000));
 
         final JavaPairDStream<String, Integer> wordCountDS = windowDS.reduceByKey(Integer::sum);
 
