@@ -31,7 +31,7 @@ public class SparkStreaming06_Close {
                     throw new RuntimeException(e);
                 }
             }
-        });
+        }).start();
         //表示当前的代码执行到此处后，会让主线程阻塞
         //  直到采集器终止后，才会继续执行下面的代码
         jsc.awaitTermination();
