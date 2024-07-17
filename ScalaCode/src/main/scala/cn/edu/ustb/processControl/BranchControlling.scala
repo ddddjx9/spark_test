@@ -7,7 +7,7 @@ object BranchControlling {
     println("请输入您的年龄：")
     val age: Int = StdIn.readInt()
 
-    val result: Any = if (age < 18) {
+    val result: Unit = if (age < 18) {
       println("未成年")
       "未成年"
     } else if (age < 30) {
