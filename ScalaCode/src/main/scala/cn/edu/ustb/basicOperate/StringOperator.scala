@@ -27,9 +27,9 @@ object StringOperator {
          |select * from
          | student
          |where
-         | name = ${name}
+         | name = $name
          |and
-         | age > ${age}
+         | age > $age
          |""".stripMargin
     println(sql)
   }

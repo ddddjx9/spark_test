@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Test {
+public class TestOutputTriangle {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入您想要显示的三角形的行数：");

@@ -1,4 +1,4 @@
-package cn.edu.ustb.basicOperate
+package cn.edu.ustb.processControl
 
 import scala.io.StdIn
 

@@ -1,4 +1,4 @@
-package cn.edu.ustb.basicOperate
+package cn.edu.ustb.processControl
 
 import scala.collection.immutable
 
@@ -10,6 +10,7 @@ object ForLoopReturn {
     val unit: Unit = for (i <- 1 to 10) {
       println(i)
     }
+    println(unit)
 
     //特殊情况下，使用关键字，可以将循环中j的每一个值保存为一个集合
     //yield关键字表示在当前循环中生成一个集合类型作为返回值返回

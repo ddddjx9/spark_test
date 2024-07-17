@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>SparkCode</module>
-        <module>ScalaBasic</module>
+        <module>ScalaCode</module>
     </modules>
 
     <properties>

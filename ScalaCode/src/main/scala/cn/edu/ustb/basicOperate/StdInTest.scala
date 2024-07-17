@@ -11,6 +11,6 @@ object StdInTest {
     val age: Int = StdIn.readInt()
 
     //打印信息
-    println(s"欢迎登录！您的姓名：${name}, 您的年龄：${age}")
+    println(s"欢迎登录！您的姓名：$name, 您的年龄：$age")
   }
 }

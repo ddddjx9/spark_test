@@ -1,4 +1,4 @@
-package cn.edu.ustb.basicOperate
+package cn.edu.ustb.processControl
 
 /**
  * 演示嵌套循环
@@ -17,7 +17,7 @@ object NestedLoops {
     println("***********************************")
     for (i <- 1 to 9) {
       for (j <- 1 to i) {
-        print(s"${j}*${i} = ${i * j} \t")
+        print(s"$j*$i = ${i * j} \t")
       }
       println()
     }
