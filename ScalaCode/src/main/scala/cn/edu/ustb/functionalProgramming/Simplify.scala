@@ -30,7 +30,7 @@ object Simplify {
     f3()
 
     //TODO 如果指定Unit作为返回值，那么就算return xxx，这个return也是不起作用的
-    println("请输入您的年龄：")
+    print("请输入您的年龄：")
     val age: Int = StdIn.readInt()
     val result: Unit = if (age < 18) {
       println("未成年")
@@ -61,10 +61,8 @@ object Simplify {
     f5
 
     //匿名函数：lambda表达式
-    //如果要调用匿名函数，就赋值给一个变量，利用变量名调用即可
-    val f6: () => Unit = () => {
+    () => {
       println("???这样也行捏？")
     }
-    f6()
   }
 }
