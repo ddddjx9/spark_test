@@ -8,6 +8,10 @@ object BubbleSort {
     //定义数组
     val arr: Array[Int] = Array(5, 7, 4, 8, 9, 7, 6, 1, 2, 3, 0, 8)
 
+    bubbleSort(arr)
+  }
+
+  def bubbleSort(arr: Array[Int]): Unit = {
     //两层循环
     //第一层循环表示要执行多少轮，第二层循环表示相互表示的两个元素
     for {i <- arr.indices; j <- 0 to arr.length - 2 - i} {
