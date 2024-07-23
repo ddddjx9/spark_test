@@ -1,5 +1,8 @@
 package cn.edu.ustb.functionalProgramming
 
+/**
+ * 函数参数的传递 - 可变参数
+ */
 object FunctionParameters {
   def main(args: Array[String]): Unit = {
     //TODO 可变参数

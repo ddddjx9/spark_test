@@ -1,5 +1,8 @@
 package cn.edu.ustb.functionalProgramming
 
+/**
+ * 高阶函数
+ */
 object HigherOrderFunction {
   def main(args: Array[String]): Unit = {
     def f1(x: Int): Int = {

@@ -2,6 +2,9 @@ package cn.edu.ustb.functionalProgramming
 
 import java.util.Scanner
 
+/**
+ * 函数与方法
+ */
 object FunctionAndMethod {
   def main(args: Array[String]): Unit = {
     //这里如果用Scala自带的StdIn，只能接受回车，不能接受空格

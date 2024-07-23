@@ -2,6 +2,9 @@ package cn.edu.ustb.functionalProgramming
 
 import cn.edu.ustb.basicOperate.{BubbleSort, SelectionSort}
 
+/**
+ * 模拟实现SPark的功能
+ */
 object ImitateSparkFunction {
   def main(args: Array[String]): Unit = {
     val arr: Array[Int] = Array(9, 3, 4, 8, 7, 5, 2, 1, 6, 8, 0)

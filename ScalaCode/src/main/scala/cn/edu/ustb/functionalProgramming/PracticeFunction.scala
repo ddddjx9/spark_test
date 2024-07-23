@@ -1,5 +1,8 @@
 package cn.edu.ustb.functionalProgramming
 
+/**
+ * 练习实现函数的功能
+ */
 object PracticeFunction {
   def main(args: Array[String]): Unit = {
     //定义一个匿名函数，将它作为值赋值给变量fun，函数有三个参数：

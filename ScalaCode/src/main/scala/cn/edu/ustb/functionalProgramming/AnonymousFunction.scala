@@ -1,5 +1,8 @@
 package cn.edu.ustb.functionalProgramming
 
+/**
+ * 演示匿名函数的使用
+ */
 object AnonymousFunction {
   def main(args: Array[String]): Unit = {
     //TODO 匿名函数，将这个匿名函数赋值给一个变量
