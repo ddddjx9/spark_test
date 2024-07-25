@@ -1,5 +1,7 @@
 package cn.edu.ustb.functionalProgramming
 
+import scala.annotation.tailrec
+
 /**
  * 利用控制抽象实现自定义while循环功能
  */
@@ -35,6 +37,22 @@ object ImitateWhile {
 
     n = 10
     myWhile(n >= 1)({
+      println(n)
+      n -= 1
+    })
+
+    //柯里化实现调用
+    @tailrec
+    def myWhile1(condition: => Boolean)(op: => Unit): Unit = {
+      if (condition) {
+        op
+        myWhile1(condition)(op)
+      }
+    }
+
+    println("----------------------------------")
+    n = 10
+    myWhile1(n >= 1)({
       println(n)
       n -= 1
     })
