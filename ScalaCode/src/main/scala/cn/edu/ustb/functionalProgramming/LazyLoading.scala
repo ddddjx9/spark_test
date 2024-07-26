@@ -15,6 +15,7 @@ object LazyLoading {
     //1. 函数被调用了
     //3. sum调用
     //2. result = 60
+    //4. result = 60
   }
 
   def sum(x: Int, y: Int): Int = {
