@@ -25,7 +25,7 @@ public class SparkSQL05_Model_SQL_1 {
         //final Dataset<Row> sqlDS = sparkSession.sql(sql);
         //sqlDS.show();
 
-        //TODO SparkSQL提供了一种特殊的方式，可以在SQL中添加自定义方法来实现复杂的逻辑
+        // TODO SparkSQL提供了一种特殊的方式，可以在SQL中添加自定义方法来实现复杂的逻辑
         //      如果想要自定义的方法能够在SQL文中使用，那么必须在Spark中进行声明和注册
         //          第一个参数表示SQL中使用的方法名
         //          第二个参数表示逻辑：In => Out

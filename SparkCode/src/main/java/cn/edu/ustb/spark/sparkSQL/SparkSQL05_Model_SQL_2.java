@@ -12,8 +12,8 @@ public class SparkSQL05_Model_SQL_2 {
         final Dataset<Row> ds = sparkSession.read().json("datas\\user.json");
         ds.createOrReplaceTempView("user");
 
-        //SparkSQL采用特殊的方式将UDAF转换为UDF使用
-        //udaf在使用时需要创建自定义聚合对象
+        // SparkSQL采用特殊的方式将UDAF转换为UDF使用
+        // udaf在使用时需要创建自定义聚合对象
         //  udaf方法在使用时需要传递两个参数
         //      第一个参数为UDAF的对象
         //      第二个参数为输入编码

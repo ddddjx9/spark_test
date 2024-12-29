@@ -15,7 +15,7 @@ public class SparkSQL06_DataSource_JDBC {
 
         Properties properties = new Properties();
         properties.setProperty("user", "root");
-        properties.setProperty("password", "Djx_20040925mysqld");
+        properties.setProperty("password", "Djx_150262549");
 
         final Dataset<Row> jdbc = sparkSession.read()
                 .jdbc("jdbc:mysql://Hadoop130:3306/study?useSSl=false&useUnicode=true&characterEncoding=UTF-8", "user", properties);
