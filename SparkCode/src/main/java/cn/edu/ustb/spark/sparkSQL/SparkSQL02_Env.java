@@ -23,7 +23,7 @@ public class SparkSQL02_Env {
         //TODO 将数据模型转换为表，方便SQL的使用
         ds.createOrReplaceTempView("user");
 
-        //TODO 使用SQL文的当时来操作数据
+        //TODO 使用SQL文的方式来操作数据
         String sql = "select avg(age) from user";
         final Dataset<Row> sqlDS = sparkSession.sql(sql);
 
