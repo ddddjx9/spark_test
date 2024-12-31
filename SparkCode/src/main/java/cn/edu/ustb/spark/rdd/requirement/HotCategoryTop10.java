@@ -21,7 +21,7 @@ public class HotCategoryTop10 {
         //将文件作为数据源，对接RDD
         final JavaRDD<String> dataRDD = jsc.textFile("datas\\user_visit_action.txt");
 
-        //TODO 需求分析
+        // 需求分析
         //      热门（点击，下单，支付）品类Top10
         //      1. 对同一个品类的不同行为进行统计，然后排序 - wordCount
         //          对同一个品类的数据进行分组

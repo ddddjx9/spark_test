@@ -13,7 +13,7 @@ public class SparkSQL05_Model_SQL {
                 .getOrCreate();
         final Dataset<Row> ds = sparkSession.read().json("datas\\user.json");
 
-        //TODO 模型对象的使用
+        // 模型对象的使用
         //      将数据模型转换为二维的结构（行，列），可以使用SQL进行访问
         //      视图：表的查询结果集；表是可以增删改的
         //      视图不能增删改，只能查询

@@ -4,7 +4,7 @@ import org.apache.spark.sql.SparkSession;
 
 public class SparkSQL06_DataSource_Hive {
     public static void main(String[] args) {
-        //TODO 默认情况下，会拿Windows环境下的用户进行登录
+        // 默认情况下，会拿Windows环境下的用户进行登录
         //      在编码前，设定Hadoop的访问用户
         System.setProperty("HADOOP_USER_NAME", "root");
 

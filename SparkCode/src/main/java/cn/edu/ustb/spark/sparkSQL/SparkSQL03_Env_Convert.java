@@ -13,12 +13,12 @@ public class SparkSQL03_Env_Convert {
                 .config(conf)
                 .getOrCreate();
 
-        //TODO 环境之间的转换
+        // 环境之间的转换
         //      Core: SparkContext -> SQL: SparkSession
         SparkSession session = new SparkSession(new SparkContext(conf));
-        //TODO  SQL : SparkSession -> SparkContext
+        // SQL : SparkSession -> SparkContext
         final SparkContext sc = sparkSession.sparkContext();
-        //TODO  进一步得到Java版本的环境对象
+        // 进一步得到Java版本的环境对象
         final JavaSparkContext jsc = new JavaSparkContext(sc);
 
         sparkSession.close();

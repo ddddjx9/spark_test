@@ -25,7 +25,7 @@ public class SparkSQL04_DataModel_Convert {
             });
         */
 
-        // TODO 因为之前还要记住数据时第几列，很麻烦
+        // 因为之前还要记住数据时第几列，很麻烦
         //      所以将数据模型中的数据类型进行转换，将Row转换为其他对象进行处理
         //      使用工具类Encoders.bean方法将当前的Row转换成User
         //      在您的情况下，出现了 No applicable constructor/method found for zero actual parameters 这个错误
