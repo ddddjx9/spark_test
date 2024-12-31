@@ -1,6 +1,6 @@
 package cn.edu.ustb.spark.rdd.userDefinedOperator;
 
-import cn.edu.ustb.spark.rdd.impl.AsyncOperator;
+import cn.edu.ustb.spark.rdd.userDefinedOperator.impl.AsyncOperator;
 import org.apache.spark.Partition;
 import org.apache.spark.TaskContext;
 import org.apache.spark.rdd.RDD;
