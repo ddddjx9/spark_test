@@ -2,6 +2,7 @@ package cn.edu.ustb.spark.rdd.userDefinedOperator;
 
 import cn.edu.ustb.spark.rdd.userDefinedOperator.impl.AsyncOperator;
 import cn.edu.ustb.spark.rdd.userDefinedOperator.impl.operator.ApiAsyncOperator;
+import cn.edu.ustb.spark.rdd.userDefinedOperator.impl.rdd.AsyncRDD;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;

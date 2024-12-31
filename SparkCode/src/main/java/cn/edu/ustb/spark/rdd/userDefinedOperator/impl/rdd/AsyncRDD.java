@@ -1,4 +1,4 @@
-package cn.edu.ustb.spark.rdd.userDefinedOperator;
+package cn.edu.ustb.spark.rdd.userDefinedOperator.impl.rdd;
 
 import cn.edu.ustb.spark.rdd.userDefinedOperator.impl.AsyncOperator;
 import org.apache.spark.Partition;
