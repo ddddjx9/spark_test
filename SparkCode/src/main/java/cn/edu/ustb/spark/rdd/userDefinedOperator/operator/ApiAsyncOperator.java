@@ -1,4 +1,4 @@
-package cn.edu.ustb.spark.rdd.userDefinedOperator.impl.operator;
+package cn.edu.ustb.spark.rdd.userDefinedOperator.operator;
 
 import cn.edu.ustb.spark.rdd.userDefinedOperator.impl.AsyncOperator;
 
