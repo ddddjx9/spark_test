@@ -1,7 +1,6 @@
 package cn.edu.ustb.spark.rdd.userDefinedOperator;
 
 import cn.edu.ustb.spark.rdd.userDefinedOperator.impl.AsyncOperator;
-import cn.edu.ustb.spark.rdd.userDefinedOperator.operator.ApiAsyncOperator;
 import cn.edu.ustb.spark.rdd.userDefinedOperator.rdd.AsyncRDD;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
@@ -9,6 +8,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class AsyncRDDExample {
     public static void main(String[] args) {
@@ -19,8 +19,19 @@ public class AsyncRDDExample {
         JavaRDD<String> inputRDD = jsc.parallelize(Arrays.asList("item1", "item2", "item3"));
 
         // 转换为 AsyncRDD
-        AsyncOperator<String> operator = new ApiAsyncOperator();
-        AsyncRDD<String> asyncRDD = new AsyncRDD<>(inputRDD.rdd(), operator);
+        AsyncRDD<String> asyncRDD = new AsyncRDD<>(inputRDD.rdd(), new AsyncOperator<String>() {
+            @Override
+            public CompletableFuture<String> asyncProcess(String element) {
+                return CompletableFuture.supplyAsync(() -> {
+                    try {
+                        Thread.sleep(1000);
+                        return "Processed: " + element;
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+        });
 
         // 将类型声明为Object，因为collect返回类型实际是Object类型
         List<String> results = asyncRDD.getResults();
