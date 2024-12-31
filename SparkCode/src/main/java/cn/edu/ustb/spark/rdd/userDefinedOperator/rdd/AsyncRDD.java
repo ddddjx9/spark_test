@@ -18,11 +18,7 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 /**
- * 自定义异步算子类，用于在基于RDD的数据处理中实现异步操作。
- * 它允许在处理RDD元素时，通过异步方式执行特定的算子操作，以提高整体处理效率，尤其适用于包含I/O等耗时操作的场景。
- * <p>
- * 该类继承自RDD<T>，并重写了相关核心方法来实现异步逻辑。
- *
+ * 自定义异步算子类，用于在基于RDD的数据处理中实现异步操作
  * @param <T> 指定的算子泛型，表示RDD中元素的类型
  */
 public class AsyncRDD<T> extends RDD<T> {
@@ -60,7 +56,7 @@ public class AsyncRDD<T> extends RDD<T> {
 
     /**
      * 重写compute方法，实现异步计算逻辑
-     * 针对每个分区的数据元素，通过异步方式应用算子操作，并处理结果获取和状态管理。
+     * 针对每个分区的数据元素，通过异步方式应用算子操作，并处理结果获取和状态管理
      *
      * @param split   数据分区
      * @param context 任务上下文
@@ -124,8 +120,8 @@ public class AsyncRDD<T> extends RDD<T> {
     }
 
     /**
-     * 获取所有异步操作的结果列表。
-     * 首先等待所有异步操作完成，然后收集每个异步操作对应的结果。
+     * 获取所有异步操作的结果列表
+     * 首先等待所有异步操作完成，然后收集每个异步操作对应的结果
      *
      * @return 包含所有异步操作结果的列表
      */
@@ -153,7 +149,7 @@ public class AsyncRDD<T> extends RDD<T> {
     }
 
     /**
-     * 重写getPartitions方法，返回依赖的前置RDD的分区信息。
+     * 重写getPartitions方法，返回依赖的前置RDD的分区信息
      *
      * @return 分区数组，与前置RDD的分区一致
      */
@@ -163,14 +159,14 @@ public class AsyncRDD<T> extends RDD<T> {
     }
 
     /**
-     * 清理线程池资源，在使用完AsyncRDD后应该调用此方法来释放线程相关资源。
+     * 清理线程池资源，在使用完AsyncRDD后应该调用此方法来释放线程相关资源
      */
     public void shutdown() {
         executorService.shutdown();
     }
 
     /**
-     * 静态工厂方法，将给定的RDD转换为AsyncRDD，通过指定的异步算子进行异步处理。
+     * 将给定的RDD转换为AsyncRDD，通过指定的异步算子进行异步处理
      *
      * @param rdd      原始的RDD
      * @param operator 自定义的异步算子
