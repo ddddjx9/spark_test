@@ -33,7 +33,6 @@ public class AsyncRDDExample {
             }
         });
 
-        // 将类型声明为Object，因为collect返回类型实际是Object类型
         List<String> results = asyncRDD.getResults();
         results.forEach(System.out::println);
 
