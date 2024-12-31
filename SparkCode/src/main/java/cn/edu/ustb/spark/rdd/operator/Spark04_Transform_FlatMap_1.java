@@ -26,7 +26,6 @@ public class Spark04_Transform_FlatMap_1 {
 
         //想要每一个字符串单独打印，而不是一行一行进行打印
         //map方法只负责转换数据，不能将数据拆分后使用
-
         final JavaRDD<String> newRDD = rdd.flatMap(line -> Arrays.asList(line.split(" ")).iterator());
 
         newRDD.collect().forEach(System.out::println);

@@ -8,7 +8,7 @@ import scala.Tuple2;
 
 import java.util.ArrayList;
 
-public class Spark02_Dependency {
+public class DependencyOnWidth {
     public static void main(String[] args) throws InterruptedException {
         final SparkConf conf = new SparkConf();
         conf.setMaster("local[*]");

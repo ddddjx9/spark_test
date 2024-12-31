@@ -7,7 +7,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import java.util.Arrays;
 import java.util.List;
 
-public class Spark03_Transform_Filter_1 {
+public class Spark03_Transform_Filter_Data_Skewing {
     public static void main(String[] args) {
         //过滤后出现数据倾斜
         //由于filter底层没有进行Shuffle，所以没有改变分区的能力

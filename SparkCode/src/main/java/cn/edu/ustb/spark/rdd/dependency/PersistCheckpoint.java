@@ -3,18 +3,20 @@ package cn.edu.ustb.spark.rdd.dependency;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.storage.StorageLevel;
 import scala.Tuple2;
 
 import java.util.ArrayList;
 
-public class Spark03_Persistence {
-    public static void main(String[] args) throws InterruptedException {
+public class PersistCheckpoint {
+    public static void main(String[] args) {
         final SparkConf conf = new SparkConf();
         conf.setMaster("local[*]");
         conf.setAppName("spark");
 
         final JavaSparkContext jsc = new JavaSparkContext(conf);
+        //TODO 设定检查点路径：推荐使用HDFS的共享文件系统
+        //      也可以使用本地文件路径进行练习
+        jsc.setCheckpointDir("checkpoint");
 
         final ArrayList<Tuple2<String, Integer>> datas = new ArrayList<>();
 
@@ -28,10 +30,11 @@ public class Spark03_Persistence {
             return tuple;
         });
 
-        //对具有重复逻辑的RDD算子进行持久化
-        //持久化操作
-        //rdd.cache();
-        rdd.persist(StorageLevel.DISK_ONLY());
+        //利用中间件进行持久化操作
+        //报错：Exception in thread "main" org.apache.spark.SparkException:
+        // Checkpoint directory has not been set in the SparkContext
+        rdd.cache();
+        rdd.checkpoint();
 
         rdd.reduceByKey(Integer::sum).collect();
         System.out.println("1计算完毕");

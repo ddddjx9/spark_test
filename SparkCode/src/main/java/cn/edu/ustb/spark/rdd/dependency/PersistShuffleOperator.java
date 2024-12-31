@@ -7,7 +7,7 @@ import scala.Tuple2;
 
 import java.util.ArrayList;
 
-public class Spark06_Persist {
+public class PersistShuffleOperator {
     public static void main(String[] args) throws InterruptedException {
         final SparkConf conf = new SparkConf();
         conf.setMaster("local[*]");
@@ -29,7 +29,7 @@ public class Spark06_Persist {
                     return tuple;
                 });
 
-        //TODO 所有的Shuffle性能都非常低
+        // 所有的Shuffle性能都非常低
         // 所以Spark为了提升Shuffle算子的性能，每一个Shuffle算子都自动含有缓存
         final JavaPairRDD<String, Integer> wordCountRDD = rdd.reduceByKey(Integer::sum);
         //final JavaPairRDD<String, Integer> wordCountRDD1 = wordCountRDD.reduceByKey(Integer::sum);

@@ -7,7 +7,7 @@ import scala.Tuple2;
 
 import java.util.ArrayList;
 
-public class Spark05_Persist {
+public class PersistBloodline {
     public static void main(String[] args) {
         final SparkConf conf = new SparkConf();
         conf.setMaster("local[*]");
