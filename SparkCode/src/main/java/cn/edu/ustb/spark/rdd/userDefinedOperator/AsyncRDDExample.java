@@ -33,6 +33,8 @@ public class AsyncRDDExample {
             }
         });
 
+        // AsyncRDD.fromRDD(inputRDD, asyncRDD);
+
         List<String> results = asyncRDD.getResults();
         results.forEach(System.out::println);
 

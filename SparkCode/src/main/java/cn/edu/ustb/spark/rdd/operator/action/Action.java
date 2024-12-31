@@ -29,7 +29,6 @@ public class Action {
 //        rdd.collect().forEach(System.out::println);
 //        rdd.collect();
 
-
         //行动算子和转换算子的区别？ - 产生新的Job？错！
         //转换算子的功能：将旧的RDD转换成新的RDD，所以调用完算子之后，会有新的RDD产生
         final JavaRDD<Integer> sortRDD = rdd.sortBy(num -> num, true, 2);
