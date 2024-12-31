@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.*;
 
+/**
+ * 自定义异步算子
+ * @param <T> 指定的算子泛型
+ */
 public class AsyncRDD<T> extends RDD<T> {
 
     private final RDD<T> previousRDD;

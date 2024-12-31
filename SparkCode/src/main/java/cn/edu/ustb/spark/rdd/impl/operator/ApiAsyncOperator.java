@@ -1,9 +1,12 @@
-package cn.edu.ustb.spark.rdd.impl.service;
+package cn.edu.ustb.spark.rdd.impl.operator;
 
 import cn.edu.ustb.spark.rdd.impl.AsyncOperator;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * 自定义的异步操作
+ */
 public class ApiAsyncOperator implements AsyncOperator<String> {
     @Override
     public CompletableFuture<String> asyncProcess(String element) {
